@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom';
+import UserPage from './Component/UserPage';
+import TodosPage from './Component/TodosPage';
+import UserItemPage from './Component/UserItemPage';
+import TodoItemPage from './Component/TodoItemPage';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <nav>
+          <NavLink to="/users" style={{ marginRight: '10px' }}>Пользователи</NavLink>
+          <NavLink to="/todos">Список дел</NavLink>
+        </nav>
+        <Routes>
+          <Route path="/users" element={<UserPage />} />
+          <Route path="/todos" element={<TodosPage />} />
+          <Route path="/users/:id" element={<UserItemPage />} />
+          <Route path="/todo/:id" element={<TodoItemPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
